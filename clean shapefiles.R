@@ -20,7 +20,6 @@ BCR.shp <- readOGR("C:/Users/madal/Documents/GLASGOW/Dissertation/data/BCR_data/
 BCR.shp.data <- BCR.shp@data
 
 #States
-
 states.shp <- tigris::states(cb = FALSE, resolution = "500k", year = NULL)
 states.shp.data <- states.shp@data
 
@@ -90,6 +89,7 @@ colnames(blanc)=colnames(unique)
 unique <- rbind(unique, blanc)
 
 
+#Now, the shape file only contains information for the routes that have unique names
 routes.shp@data <- unique
 
 
