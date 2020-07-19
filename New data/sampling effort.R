@@ -70,4 +70,3 @@ ggplot(bcr.size, aes(BCR, Area, color=as.factor(BCR))) +
   ggtitle("BCR Area and number of routes")
 
 prop <- na.omit(bcr.size$proportion)
-mean(prop)
