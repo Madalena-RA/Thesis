@@ -111,7 +111,7 @@ sum(is.na(bird_diversity))
 #21 - Developed, Open Space (URBAN_OPEN)
 #22 - Developed, Low Intensity (URBAN_LOW)
 #23 - Developed, Medium Intensity (URBAN_MEDIUM)
-#24 - Developed, High Intensity (URBAN_HIGH)
+#24 - Developed, High Intensity (URBAN_HIGH) #survey was conducted in secondary roads
 #31 - Barren Land (BARREN)
 #41 - Deciduous Forest (DECIDUOUS_FOREST)
 #42 - Evergreen Forest (EVERGREEN_FOREST)
@@ -229,6 +229,11 @@ test.1<- inner_join(x=bird_diversity, land_diversity, by=c("Unique_State_Route_I
 write.csv(test.1, "~/Github/Thesis/New data/Diversities.csv")
 
 
+sum(test.1$Alpha_q0==62.2)
+
+
+
+
 # P L O T S ---- 
 
 #Redundancy
@@ -281,32 +286,15 @@ ggplot(test.1, aes(Landscape_Alpha_q1, Alpha_q1))+
 
 ####
 
-ggplot(output_data, aes(Redundancy_q0, Alpha_q0))+
+ggplot(test.1, aes(Landscape_Alpha_q0, Landscape_Redundancy_q1))+
   geom_point(alpha=0.2) + 
   geom_smooth(method="glm")+
-  geom_rug()
+  geom_rug() +
+  ggtitle("Landscape Richness against Landscape Redundancy","q=1")
 
 
 
 
-
-
-
-
-#-------------------------------------------- Spatial Data ------------------------------------------------------
-
-#Add BCR ?
-
-
-routes.sf <- sf::read_sf("Routes_Compiled.shp"); routes.sf
-routes.sp <- rgdal::readOGR("Routes_Compiled.shp", GDAL1_integer64_policy =T)
-routes.sp.data <- routes.sp@data
-
-routes.sp.data <- left_join(routes.sp.data, test.1, by=c("U_S_R_I"="Unique_State_Route_ID"))
-
-routes.sp@data <- routes.sp.data
-
-writeOGR(obj= routes.sp,dsn ="C:/Users/madal/Documents/GLASGOW/Dissertation/data/USA_map",layer = "NEW ROUTES", driver="ESRI Shapefile", check_exists = FALSE )
 
 
 

@@ -33,6 +33,10 @@ BCR <- routes %>% select(U_S_R_I, BCR)
 
 Diversities_BCR <- left_join(Diversities, BCR, by=c("Unique_State_Route_ID"="U_S_R_I"))
 
+write.csv(Diversities_BCR, "~/Github/Thesis/New data/Diversities_BCR.csv")
+
+
+
 #---------------------------------------- Averages by BCR -------------------------------------------------------------------
 
 #Calculates the Average of every column by BCR 
